@@ -6,18 +6,20 @@ public class CustomFile {
 private ArrayList<String> alta=new ArrayList<String>();
 private List<ChangeHandler> listener=new ArrayList<>();
 private WriteAL wal=new WriteAL();
-	CustomFile(ArrayList<String> arlist) {
+CustomFile(ArrayList<String> arlist) {
 		this.alta=arlist;
-	}
-	{try {
-		wal.saveAList(alta);
-	} catch (IOException e) {
-		
-		e.printStackTrace();
-	}}
-	 public void addToListener(ChangeHandler changeHandler){
+		onChange();
+		}
+		 public void addToListener(ChangeHandler changeHandler){
 	        listener.add(changeHandler);
 	    }
+public void writeData() {
+	{try {
+		wal.saveAList(alta);
+	} catch (IOException e) {		
+		e.printStackTrace();
+	}}
+}
 
 	 private void onChange(){
 	        for(ChangeHandler item:listener){
