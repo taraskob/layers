@@ -20,7 +20,6 @@ public void writeData() {
 		e.printStackTrace();
 	}}
 }
-
 	 private void onChange(){
 	        for(ChangeHandler item:listener){
 	            item.onChange();
