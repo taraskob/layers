@@ -16,6 +16,7 @@ public class LayersTest {
      String testresult= "Write data test result is ";
      String readline = "Test "+sdf.format(getDate())+"-/"+filectrl.readData();
      filectrl.contr(readline);
+     filectrl.writeData();
      getResult(determResult(testresult,readline));
      }
     public void syncro() {
@@ -25,6 +26,7 @@ public class LayersTest {
      data.setData(filectrl.strToAList(readline));
      filectrl.syncro();
      filectrl.contr(readline);
+     filectrl.writeData();
      getResult(filectrl.readData());
      }
     public Date getDate() {

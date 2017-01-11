@@ -48,10 +48,11 @@ public class Forma  implements ChangeHandler {
         if(jtextc.isEmpty())
             jtextc="";
         filectrl.contr(jtextc);
+        filectrl.writeData();
     }
 
     @Override
     public void onChange() {
-        jtextb.setText(filectrl.readData());
+        jtexta.setText(filectrl.readData());
                }
 }

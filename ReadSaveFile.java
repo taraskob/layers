@@ -6,27 +6,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 public class ReadSaveFile {
-    public String readfile() throws IOException   {
-        File file = new File("Data.dat");
-        FileReader fr;
+public String readfile() throws IOException   {
         String line="";
-        try {
-            fr = new FileReader(file);
-            BufferedReader br = new BufferedReader(fr);
-            line=br.readLine();
-            while((br.readLine()) != null){
-                line=line+br.readLine();
+        try(FileReader freader = new FileReader("Data.dat"))
+        {
+            int c;
+            while((c=freader.read())!=-1){
+                line=line+(char)c;
             }
-            br.close();
-            fr.close();
+            freader.close();
             if(line==null) line="";
             return line;
-        } catch (FileNotFoundException e) {
+        }
+        catch(FileNotFoundException e){
             FileWriter writer = new FileWriter("Data.dat");
             {
                 writer.write(line);
             }
             writer.close();
+            if(line==null) line="";
             return line;
         }
     }
