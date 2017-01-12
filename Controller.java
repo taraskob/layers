@@ -46,10 +46,7 @@ public class Controller {
         else{
 
             for(int i=0;i<aldata.size();i++){
-
-                if(! aldata.get(i).equals(aldata_dat.get(i)))
-                    if(!myEquals(aldata.get(i),aldata_dat.get(i)))
-
+                     if(!myEquals(aldata.get(i),aldata_dat.get(i)))
                     {
                         return false;
                     }
