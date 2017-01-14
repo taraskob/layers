@@ -5,7 +5,7 @@ import java.util.Timer;
 public class Controller {
     private List<ChangeHandler> listener = new ArrayList<>();
     private ReadSaveFile data_dat=new ReadSaveFile();
-    private CustomFile data=new CustomFile();
+    private Data data=new Data();
     private LTimerTask mytask=new LTimerTask(this);
     private Timer compTimer=new Timer(true);
     public void contr(String inputtext) {

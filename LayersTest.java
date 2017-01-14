@@ -5,7 +5,7 @@ public class LayersTest {
     private Date date=new Date();
     private SimpleDateFormat sdf=new SimpleDateFormat("dd.MM.YY kk:mm:ss");
     private Controller filectrl=new Controller();
-    private CustomFile data=new CustomFile();
+    private Data data=new Data();
     private ReadSaveFile data_dat=new ReadSaveFile();
     public void create_read()
     {String testresult="Create file/Read data test result is ";
