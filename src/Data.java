@@ -1,7 +1,6 @@
 import java.io.IOException;
 import java.util.ArrayList;
 public class Data {
-    private ReadSaveFile load_data=new ReadSaveFile();
     private ArrayList<String> current_data=new ArrayList<String>();
     public void setData(String inputtext) {
         ArrayList<String> al=new ArrayList<String>();
@@ -46,6 +45,7 @@ public class Data {
         return false;
     }
     public void writeData() {
+        ReadSaveFile load_data=new ReadSaveFile();
         {try {
             load_data.savefile(getData());
 
@@ -54,6 +54,7 @@ public class Data {
         }}
     }
     public String readData() {
+        ReadSaveFile load_data=new ReadSaveFile();
         try {
             return load_data.readfile();
         } catch (IOException e) {
