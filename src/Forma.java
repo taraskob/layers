@@ -1,3 +1,4 @@
+import com.sun.org.apache.xpath.internal.operations.String;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -29,8 +30,8 @@ public class Forma  implements ChangeHandler {
         jscrlpb.setPreferredSize(new Dimension(250,200));
         jbtnSave = new JButton("Save File");
         filectrl.addToListener(this);
-        jtexta.setText(filectrl.readData());
-        filectrl.contr(jtexta.getText());
+        load();
+        filectrl.contr(jtexta.getText(),jtextb.getText());
         jbtnSave.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent le) {
                 saveinputtext(filectrl);
@@ -47,8 +48,13 @@ public class Forma  implements ChangeHandler {
         filectrl.contr(jtexta.getText(),jtextb.getText());
         filectrl.writeData();
     }
+    public void load() {
+        java.lang.String line=filectrl.readData();
+        jtexta.setText(line.substring(0, line.length()/2));
+        jtextb.setText(line.substring(line.length()/2));
+    }
     @Override
     public void onChange() {
-        jtexta.setText(filectrl.readData());
+        load();
                }
 }

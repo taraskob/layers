@@ -24,9 +24,11 @@ public class Controller {
             e.printStackTrace();}
     }
     public void syncro() throws IOException {
-        ArrayList<String> load_data=data.strToAList(readData());
-           if(!data.compareData(load_data))
+       Data new_data=new Data();
+       new_data.setData(new_data.readData());
+        if(!data.compareData(new_data))
             {
+                data=new_data;
           onChange();
             }
          }
