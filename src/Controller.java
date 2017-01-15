@@ -4,13 +4,15 @@ import java.util.List;
 import java.util.Timer;
 public class Controller {
     private List<ChangeHandler> listener = new ArrayList<>();
-    private ReadSaveFile new_data=new ReadSaveFile();
     private Data data=new Data();
     private LTimerTask mytask=new LTimerTask(this);
     private Timer compTimer=new Timer(true);
     public void contr(String inputtext) {
          data.setData(inputtext);
       }
+    public void contr(String inputtext_a,String inputtext_b) {
+        data.setData(inputtext_a,inputtext_b);
+    }
     public void addToListener(ChangeHandler changeHandler){
         listener.add(changeHandler);
     }
@@ -22,27 +24,18 @@ public class Controller {
             e.printStackTrace();}
     }
     public void syncro() throws IOException {
-           if(!data.compareData(new_data))
+        ArrayList<String> load_data=data.strToAList(readData());
+           if(!data.compareData(load_data))
             {
           onChange();
             }
          }
     public void writeData() {
-        {try {
-          new_data.savefile(data.getData());
-             onChange();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }}
+          data.writeData();
     }
     public String readData() {
-        try {
-          return new_data.readfile();
-         } catch (IOException e) {
-            e.printStackTrace();
-            return "";
-    }
-}
+         return data.readData();
+     }
     public void onChange() {
         for(ChangeHandler item:listener){
             item.onChange();

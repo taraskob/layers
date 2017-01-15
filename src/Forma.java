@@ -43,15 +43,10 @@ public class Forma  implements ChangeHandler {
         cp.add(jbtnSave);
         jfrm.setVisible(true);
     }
-
     public void saveinputtext(Controller fcntr) {
-        String jtextc=jtexta.getText()+jtextb.getText();
-        if(jtextc.isEmpty())
-            jtextc="";
-        filectrl.contr(jtextc);
+        filectrl.contr(jtexta.getText(),jtextb.getText());
         filectrl.writeData();
     }
-
     @Override
     public void onChange() {
         jtexta.setText(filectrl.readData());
