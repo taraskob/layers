@@ -2,18 +2,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
-public class Controller {
+class Controller {
     private List<ChangeHandler> listener = new ArrayList<>();
     private Data data=new Data();
     private LTimerTask mytask=new LTimerTask(this);
     private Timer compTimer=new Timer(true);
-    public void contr(String inputtext) {
-         data.setData(inputtext);
-      }
-    public void contr(String inputtext_a,String inputtext_b) {
-        data.setData(inputtext_a,inputtext_b);
-    }
-    public void addToListener(ChangeHandler changeHandler){
+    void addToListener(ChangeHandler changeHandler){
         listener.add(changeHandler);
     }
       {compTimer.schedule(mytask,1000,15000);
@@ -23,22 +17,23 @@ public class Controller {
         catch (InterruptedException e) {
             e.printStackTrace();}
     }
-    public void syncro() throws IOException {
+     void syncro() throws IOException {
        Data new_data=new Data();
-       new_data.setData(new_data.readData());
+       new_data.setData();
         if(!data.compareData(new_data))
             {
-                data=new_data;
-          onChange();
+              data=new_data;
+              onChange();
             }
          }
-    public void writeData() {
+    void writeData(String inputtext_a, String inputtext_b) {
+          data.setData(inputtext_a,inputtext_b);
           data.writeData();
     }
-    public String readData() {
+    String readData() {
          return data.readData();
      }
-    public void onChange() {
+    void onChange() {
         for(ChangeHandler item:listener){
             item.onChange();
         }

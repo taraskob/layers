@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
-public class Forma  implements ChangeHandler {
+class Forma  implements ChangeHandler {
     private JTextArea jtexta;
     private JTextArea jtextb;
     private JButton jbtnSave;
@@ -31,7 +31,6 @@ public class Forma  implements ChangeHandler {
         jbtnSave = new JButton("Save File");
         filectrl.addToListener(this);
         load();
-        filectrl.contr(jtexta.getText(),jtextb.getText());
         jbtnSave.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent le) {
                 saveinputtext(filectrl);
@@ -44,13 +43,12 @@ public class Forma  implements ChangeHandler {
         cp.add(jbtnSave);
         jfrm.setVisible(true);
     }
-    public void saveinputtext(Controller fcntr) {
-        filectrl.contr(jtexta.getText(),jtextb.getText());
-        filectrl.writeData();
+     private void saveinputtext(Controller fcntr) {
+        filectrl.writeData(jtexta.getText(),jtextb.getText());
     }
-    public void load() {
+     private void load() {
         java.lang.String line=filectrl.readData();
-        jtexta.setText(line.substring(0, line.length()/2));
+        jtexta.setText(line.substring(0,line.length()/2));
         jtextb.setText(line.substring(line.length()/2));
     }
     @Override

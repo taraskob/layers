@@ -1,3 +1,3 @@
-public interface ChangeHandler {
+interface ChangeHandler {
     void onChange();
 }

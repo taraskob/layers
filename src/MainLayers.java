@@ -7,7 +7,6 @@ public class MainLayers {
                 try {
                     new Forma();
                 } catch (IOException e) {
-
                     e.printStackTrace();
                 }
             }

@@ -1,29 +1,31 @@
 import java.io.IOException;
 import java.util.ArrayList;
-public class Data {
+class Data {
     private ArrayList<String> current_data=new ArrayList<String>();
-    public void setData(String inputtext) {
-        ArrayList<String> al=new ArrayList<String>();
-        al.add(inputtext);
-        current_data=al;
+    void setData() {
+        current_data.add(readData());
     }
-    public void setData(String inputtext_a,String inputtext_b) {
-        ArrayList<String> al=new ArrayList<String>();
-        al.add(inputtext_a);
-        al.add(inputtext_b);
-        current_data=al;
-    }
-
-    public ArrayList<String> getData() {
-        return this.current_data;
-    }
-
-    public ArrayList<String> strToAList(String inputtext)  {
+    void setData(String inputtext_a, String inputtext_b) {
+       switch(current_data.size()){
+          case 0:
+               current_data.add(0,inputtext_a);
+               current_data.add(1,inputtext_b);
+               break;
+           case 1:
+               current_data.set(0,inputtext_a);
+               current_data.add(1,inputtext_b);
+               break;
+           default:
+               current_data.set(0,inputtext_a);
+               current_data.set(1,inputtext_b);
+               }
+     }
+     ArrayList<String> strToAList(String inputtext)  {
         ArrayList<String> al=new ArrayList<String>();
         al.add(inputtext);
         return al;
     }
-    public boolean isEqual(ArrayList<String> current_data,ArrayList<String> new_data){
+    private boolean isEqual(ArrayList<String> current_data,ArrayList<String> new_data){
         if(current_data.size()!=new_data.size()){
             return false;}
         else{
@@ -35,25 +37,24 @@ public class Data {
             }
             return true;
         }}
-    public boolean myEquals(String str1, String str2) {
+    private boolean myEquals(String str1, String str2) {
         return str1 == null ? str2 == null : str1.equals(str2);
     }
-    public boolean compareData(Data new_data) throws IOException {
+    boolean compareData(Data new_data) throws IOException {
                 if(isEqual(current_data,strToAList(new_data.readData()))) {
             return true;
         }
         return false;
     }
-    public void writeData() {
+    void writeData() {
         ReadSaveFile load_data=new ReadSaveFile();
         {try {
-            load_data.savefile(getData());
-
+            load_data.savefile(current_data);
         } catch (IOException e) {
             e.printStackTrace();
         }}
     }
-    public String readData() {
+     String readData() {
         ReadSaveFile load_data=new ReadSaveFile();
         try {
             return load_data.readfile();

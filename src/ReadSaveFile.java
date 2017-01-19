@@ -5,9 +5,9 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-public class ReadSaveFile {
+class ReadSaveFile {
     private File file;
-    public String readfile() throws FileNotFoundException {
+    String readfile() throws FileNotFoundException {
     StringBuilder line = new StringBuilder();
     try {
         filexists("Data.dat");
@@ -28,11 +28,9 @@ public class ReadSaveFile {
     } catch(IOException e) {
         throw new RuntimeException(e);
     }
-
      return line.toString();
 }
-
-    public void filexists(String fileName) throws IOException {
+     private void filexists(String fileName) throws IOException {
         file = new File(fileName);
         if (!file.exists()){
             String line="";
@@ -43,7 +41,7 @@ public class ReadSaveFile {
             writer.close();
         }
     }
-    public void savefile(ArrayList<String> arlist) throws IOException {
+     void savefile(ArrayList<String> arlist) throws IOException {
         FileWriter writer = new FileWriter("Data.dat");
         for(String istr: arlist) {
             writer.write(istr);
