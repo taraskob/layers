@@ -1,4 +1,3 @@
-import com.sun.org.apache.xpath.internal.operations.String;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -32,9 +31,8 @@ class Forma  implements ChangeHandler {
         filectrl.addToListener(this);
         load();
         jbtnSave.addActionListener(new ActionListener(){
-            public void actionPerformed(ActionEvent le) {
-                saveinputtext(filectrl);
-             }
+         public void actionPerformed(ActionEvent le) {
+                saveinputtext();}
         });
         Container cp=jfrm.getContentPane();
         cp.add(jscrlpa);
@@ -43,14 +41,16 @@ class Forma  implements ChangeHandler {
         cp.add(jbtnSave);
         jfrm.setVisible(true);
     }
-     private void saveinputtext(Controller fcntr) {
-        filectrl.writeData(jtexta.getText(),jtextb.getText());
-    }
+     private void saveinputtext() {
+        Data data= filectrl.getData();
+        data.saveData(jtexta.getText(),jtextb.getText());
+     }
      private void load() {
-        java.lang.String line=filectrl.readData();
+        Data data= filectrl.getData();
+        java.lang.String line=data.readData();
         jtexta.setText(line.substring(0,line.length()/2));
         jtextb.setText(line.substring(line.length()/2));
-    }
+     }
     @Override
     public void onChange() {
         load();

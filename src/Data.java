@@ -5,7 +5,7 @@ class Data {
     void setData() {
         current_data.add(readData());
     }
-    void setData(String inputtext_a, String inputtext_b) {
+    void saveData(String inputtext_a, String inputtext_b) {
        switch(current_data.size()){
           case 0:
                current_data.add(0,inputtext_a);
@@ -19,6 +19,7 @@ class Data {
                current_data.set(0,inputtext_a);
                current_data.set(1,inputtext_b);
                }
+               writeData();
      }
      ArrayList<String> strToAList(String inputtext)  {
         ArrayList<String> al=new ArrayList<String>();

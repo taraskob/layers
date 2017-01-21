@@ -26,13 +26,7 @@ class Controller {
               onChange();
             }
          }
-    void writeData(String inputtext_a, String inputtext_b) {
-          data.setData(inputtext_a,inputtext_b);
-          data.writeData();
-    }
-    String readData() {
-         return data.readData();
-     }
+    Data getData() {return data;}
     void onChange() {
         for(ChangeHandler item:listener){
             item.onChange();
