@@ -10,23 +10,21 @@ class LayersTest {
     private Controller filectrl=new Controller();
     private Data data=new Data();
     private ReadSaveFile load_data=new ReadSaveFile();
+        LayersTest() throws IOException {
+    }
+    private ArrayList<String> inputtext=new ArrayList<String>();
     void create_read() throws FileNotFoundException {String testresult="Create file/Read data test result is ";
         try {
             deleteFile("Data.dat");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String readline=filectrl.getData().readData();
+     String readline=filectrl.getData().readData();
      getResult(determResult(testresult,readline));}
      void write() throws FileNotFoundException {
      String testresult= "Write data test result is ";
-         try {
-             deleteFile("Data.dat");
-         } catch (FileNotFoundException e) {
-             e.printStackTrace();
-         }
      String readline = "Test "+sdf.format(getDate())+"-/"+filectrl.getData().readData();
-     filectrl.getData().saveData(readline,"");
+     filectrl.getData().saveData(getInputtext(readline,""));
      getResult(determResult(testresult,readline));
      }
      void syncro() throws IOException {
@@ -37,9 +35,9 @@ class LayersTest {
          } catch (FileNotFoundException e) {
              e.printStackTrace();
          }
-     data.saveData(readline,"test");
+     data.saveData(getInputtext(readline,""));
      filectrl.syncro();
-     filectrl.getData().saveData(readline,"test");
+     filectrl.getData().saveData(getInputtext(readline,""));
      getResult(filectrl.getData().readData());
      }
      Date getDate() {
@@ -61,5 +59,11 @@ class LayersTest {
     public void deleteFile(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         if (file.exists()) new File(fileName).delete();
+    }
+    ArrayList<String> getInputtext(String texta,String textb) {
+        ArrayList<String> inputtext=new ArrayList();
+        inputtext.add(0,texta);
+        inputtext.add(1,textb);
+        return inputtext;
     }
 }

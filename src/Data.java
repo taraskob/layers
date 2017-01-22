@@ -5,23 +5,11 @@ class Data {
     void setData() {
         current_data.add(readData());
     }
-    void saveData(String inputtext_a, String inputtext_b) {
-       switch(current_data.size()){
-          case 0:
-               current_data.add(0,inputtext_a);
-               current_data.add(1,inputtext_b);
-               break;
-           case 1:
-               current_data.set(0,inputtext_a);
-               current_data.add(1,inputtext_b);
-               break;
-           default:
-               current_data.set(0,inputtext_a);
-               current_data.set(1,inputtext_b);
-               }
-               writeData();
-     }
-     ArrayList<String> strToAList(String inputtext)  {
+    void saveData(ArrayList<String> inputted) {
+       current_data=inputted;
+       writeData();
+    }
+    ArrayList<String> strToAList(String inputtext)  {
         ArrayList<String> al=new ArrayList<String>();
         al.add(inputtext);
         return al;
