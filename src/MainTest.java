@@ -5,10 +5,6 @@ public class MainTest {
         LayersTest testlayers=new LayersTest();
         testlayers.create_read();
         testlayers.write();
-        try {
-            testlayers.syncro();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+        testlayers.syncro();
+      }
 }

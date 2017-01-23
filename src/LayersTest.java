@@ -12,32 +12,20 @@ class LayersTest {
     private ReadSaveFile load_data=new ReadSaveFile();
         LayersTest() throws IOException {
     }
-    private ArrayList<String> inputtext=new ArrayList<String>();
+    private ArrayList<String> current_data=new ArrayList<String>();
     void create_read() throws FileNotFoundException {String testresult="Create file/Read data test result is ";
-        try {
-            deleteFile("Data.dat");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
      String readline=filectrl.getData().readData();
      getResult(determResult(testresult,readline));}
      void write() throws FileNotFoundException {
      String testresult= "Write data test result is ";
      String readline = "Test "+sdf.format(getDate())+"-/"+filectrl.getData().readData();
-     filectrl.getData().saveData(getInputtext(readline,""));
+     saveData(readline);
      getResult(determResult(testresult,readline));
      }
      void syncro() throws IOException {
-     ArrayList<String> alinput=new ArrayList<String>();
      String readline= "These data are synchronized - test Ok";
-         try {
-             deleteFile("Data.dat");
-         } catch (FileNotFoundException e) {
-             e.printStackTrace();
-         }
-     data.saveData(getInputtext(readline,""));
      filectrl.syncro();
-     filectrl.getData().saveData(getInputtext(readline,""));
+     saveData(readline);
      getResult(filectrl.getData().readData());
      }
      Date getDate() {
@@ -49,21 +37,22 @@ class LayersTest {
      return result;
     }
      void getResult(String testresult) {
-
         System.out.println(testresult);
     }
-
-     boolean myEquals(String str1, String str2) {
+    boolean myEquals(String str1, String str2) {
     return str1 == null ? str2 == null : str1.equals(str2);
 }
     public void deleteFile(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         if (file.exists()) new File(fileName).delete();
     }
-    ArrayList<String> getInputtext(String texta,String textb) {
-        ArrayList<String> inputtext=new ArrayList();
-        inputtext.add(0,texta);
-        inputtext.add(1,textb);
-        return inputtext;
+    public void saveData(String line) {
+        switch (current_data.size()) {
+            case(0):
+                current_data.add(line);
+                break;
+            default:
+                    current_data.set(0,line);
     }
-}
+        filectrl.getData().writeData();
+}}

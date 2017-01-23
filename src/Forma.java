@@ -4,7 +4,6 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -43,7 +42,8 @@ class Forma  implements ChangeHandler {
         jfrm.setVisible(true);
     }
      private void saveinputtext() {
-        filectrl.getData().saveData(getInputtext(jtexta.getText(),jtextb.getText()));
+        Data data= filectrl.getData();
+        data.saveData(this);
      }
      private void load() {
         Data data= filectrl.getData();
@@ -51,13 +51,10 @@ class Forma  implements ChangeHandler {
         jtexta.setText(line.substring(0,line.length()/2));
         jtextb.setText(line.substring(line.length()/2));
      }
-      ArrayList<String> getInputtext(String texta,String textb) {
-          ArrayList<String> inputtext=new ArrayList();
-                  inputtext.add(0,texta);
-                  inputtext.add(1,textb);
-                  return inputtext;
-     }
-    @Override
+     String getA() {return jtexta.getText();}
+     String getB() {return jtextb.getText();}
+
+       @Override
     public void onChange() {
         load();
                }

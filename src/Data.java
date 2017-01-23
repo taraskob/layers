@@ -5,8 +5,22 @@ class Data {
     void setData() {
         current_data.add(readData());
     }
-    void saveData(ArrayList<String> inputted) {
-       current_data=inputted;
+    void getData(Forma frm) {
+    switch (current_data.size()) {
+        case(0):
+            current_data.add(frm.getA());
+            current_data.add(frm.getB());
+            break;
+        case(1):
+            current_data.set(0,frm.getA());
+            current_data.add(frm.getB());
+            break;
+        default:
+            current_data.set(0,frm.getA());
+            current_data.set(1,frm.getB());
+    }}
+    void saveData(Forma frm) {
+       getData(frm);
        writeData();
     }
     ArrayList<String> strToAList(String inputtext)  {
@@ -52,4 +66,6 @@ class Data {
             return "";
         }
     }
+
+    
 }
