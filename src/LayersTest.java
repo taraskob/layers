@@ -19,13 +19,15 @@ class LayersTest {
      void write() throws FileNotFoundException {
      String testresult= "Write data test result is ";
      String readline = "Test "+sdf.format(getDate())+"-/"+filectrl.getData().readData();
-     saveData(readline);
+     load_data.setSaveData(readline,"");
+     data.saveInputData(load_data);
      getResult(determResult(testresult,readline));
      }
      void syncro() throws IOException {
      String readline= "These data are synchronized - test Ok";
      filectrl.syncro();
-     saveData(readline);
+     load_data.setSaveData(readline,"");
+     data.saveInputData(load_data);
      getResult(filectrl.getData().readData());
      }
      Date getDate() {
@@ -45,14 +47,5 @@ class LayersTest {
     public void deleteFile(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         if (file.exists()) new File(fileName).delete();
-    }
-    public void saveData(String line) {
-        switch (current_data.size()) {
-            case(0):
-                current_data.add(line);
-                break;
-            default:
-                    current_data.set(0,line);
-    }
-        filectrl.getData().writeData();
-}}
+    }}
+

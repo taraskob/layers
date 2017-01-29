@@ -5,29 +5,21 @@ class Data {
     void setData() {
         current_data.add(readData());
     }
-    void getData(Forma frm) {
-    switch (current_data.size()) {
-        case(0):
-            current_data.add(frm.getA());
-            current_data.add(frm.getB());
-            break;
-        case(1):
-            current_data.set(0,frm.getA());
-            current_data.add(frm.getB());
-            break;
-        default:
-            current_data.set(0,frm.getA());
-            current_data.set(1,frm.getB());
-    }}
-    void saveData(Forma frm) {
-       getData(frm);
-       writeData();
-    }
-    ArrayList<String> strToAList(String inputtext)  {
-        ArrayList<String> al=new ArrayList<String>();
-        al.add(inputtext);
-        return al;
-    }
+    void saveInputData(ReadSaveFile save_data)  {
+        switch (current_data.size()) {
+            case(0):
+                current_data.add(save_data.getSaveDataA());
+                current_data.add(save_data.getSaveDataB());
+                break;
+            case(1):
+                current_data.set(0,save_data.getSaveDataA());
+                current_data.add(save_data.getSaveDataB());
+                break;
+            default:
+                current_data.set(0,save_data.getSaveDataA());
+                current_data.set(1,save_data.getSaveDataB());
+        }
+    writeData(save_data);}
     private boolean isEqual(ArrayList<String> current_data,ArrayList<String> new_data){
         if(current_data.size()!=new_data.size()){
             return false;}
@@ -49,10 +41,14 @@ class Data {
         }
         return false;
     }
-    void writeData() {
-        ReadSaveFile load_data=new ReadSaveFile();
+    ArrayList<String> strToAList(String inputtext)  {
+        ArrayList<String> al=new ArrayList<String>();
+        al.add(inputtext);
+        return al;
+    }
+    void writeData(ReadSaveFile save_data) {
         {try {
-            load_data.savefile(current_data);
+            save_data.savefile(current_data);
         } catch (IOException e) {
             e.printStackTrace();
         }}
@@ -66,6 +62,4 @@ class Data {
             return "";
         }
     }
-
-    
 }

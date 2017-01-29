@@ -7,6 +7,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 class ReadSaveFile {
     private File file;
+    String input_A;
+    String input_B;
+    void setSaveData(String input_A,String input_B) {this.input_A=input_A;this.input_B=input_B;}
+    String getSaveDataA() {return input_A;}
+    String getSaveDataB() {return input_B;}
     String readfile() throws FileNotFoundException {
     StringBuilder line = new StringBuilder();
     try {

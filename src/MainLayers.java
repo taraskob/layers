@@ -5,7 +5,7 @@ public class MainLayers {
         SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Forma();
+                  Forma frm=new Forma();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

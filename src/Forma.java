@@ -42,18 +42,15 @@ class Forma  implements ChangeHandler {
         jfrm.setVisible(true);
     }
      private void saveinputtext() {
-        Data data= filectrl.getData();
-        data.saveData(this);
-     }
+       ReadSaveFile save_data=new ReadSaveFile();
+       save_data.setSaveData(jtexta.getText(),jtextb.getText());
+       filectrl.getData().saveInputData(save_data);
+      }
      private void load() {
-        Data data= filectrl.getData();
-        java.lang.String line=data.readData();
+        java.lang.String line=filectrl.getData().readData();
         jtexta.setText(line.substring(0,line.length()/2));
         jtextb.setText(line.substring(line.length()/2));
      }
-     String getA() {return jtexta.getText();}
-     String getB() {return jtextb.getText();}
-
        @Override
     public void onChange() {
         load();
