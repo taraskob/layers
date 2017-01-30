@@ -42,9 +42,9 @@ class Forma  implements ChangeHandler {
         jfrm.setVisible(true);
     }
      private void saveinputtext() {
-       ReadSaveFile save_data=new ReadSaveFile();
-       save_data.setSaveData(jtexta.getText(),jtextb.getText());
-       filectrl.getData().saveInputData(save_data);
+       String[] inputdata={jtexta.getText(),jtextb.getText()};
+       filectrl.getData().setProperty(inputdata);
+       filectrl.onChange();
       }
      private void load() {
         java.lang.String line=filectrl.getData().readData();
