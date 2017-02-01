@@ -19,13 +19,13 @@ class LayersTest {
      void write() throws FileNotFoundException {
      String testresult= "Write data test result is ";
      String readline = "Test "+sdf.format(getDate())+"-/"+filectrl.getData().readData();
-     data.setProperty(new String[]{readline, ""});
+     data.saveInputData(new String[]{readline, ""});
      getResult(determResult(testresult,readline));
      }
      void syncro() throws IOException {
      String readline= "These data are synchronized - test Ok";
      filectrl.syncro();
-     data.setProperty(new String[]{readline, ""});
+     data.saveInputData(new String[]{readline, ""});
      getResult(filectrl.getData().readData());
      }
      Date getDate() {
