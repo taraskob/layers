@@ -5,20 +5,13 @@ class Data {
     void setData() {
         current_data.add(readData());
     }
-    private String[] property;
-    void setProperty(int i,String property) {
-     this.property[i]=property;
-    }
-    String getProperty(int i) {return property[i];}
     void saveInputData(String[] inputdata)  {
-        property=new String[inputdata.length];
-        for(int i=0;i<property.length;i++)
-        {   setProperty(i,inputdata[i]);
-             if (current_data.size() >= property.length) {
-                current_data.set(i, getProperty(i));
+        for(int i=0;i<inputdata.length;i++)
+        {  if (current_data.size() >= inputdata.length) {
+                current_data.set(i, inputdata[i]);
             }
             else {
-                current_data.add(i, getProperty(i));
+                current_data.add(i, inputdata[i]);
             }}
      writeData();}
     private boolean isEqual(ArrayList<String> current_data,ArrayList<String> new_data){
